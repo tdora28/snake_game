@@ -18,7 +18,15 @@ h1 {
   width: calc(100vmin - 8rem);
   height: calc(100vmin - 8rem);
   margin: 0 auto;
+  background: #333;
 }
-.square {
-  border: 1px solid black;
+
+.snake {
+  background-color: limegreen;
+  border: 0.25vmin solid black;
+}
+
+.food {
+  background-color: tomato;
+  border: 0.25vmin solid black;
 }
