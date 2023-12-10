@@ -1,7 +1,7 @@
 // Main assets
 const board = document.querySelector('#board');
 const SIZE = 20;
-let snake;
+let snake, food;
 
 function setBoard() {
   for (let i = 0; i < SIZE * SIZE; i++) {
@@ -14,6 +14,7 @@ function setBoard() {
 
 function initGame() {
   snake = [{ x: 11, y: 11 }];
+  food = { x: 5, y: 1 };
   draw();
 }
 
@@ -23,9 +24,17 @@ function draw() {
     div.classList.remove('snake');
   });
   snake.forEach((snakePart) => {
-    const partPosition = (snakePart.y - 1) * SIZE + (snakePart.x - 1);
-    board.children[partPosition].classList.add('snake');
+    const snakePartPosition = findDivIndex(snakePart);
+    board.children[snakePartPosition].classList.add('snake');
   });
+  const foodPosition = findDivIndex(food);
+  board.children[foodPosition].classList.add('food');
+}
+
+// Helper functions
+function findDivIndex(coordinates) {
+  const divIndex = (coordinates.y - 1) * SIZE + (coordinates.x - 1);
+  return divIndex;
 }
 
 setBoard();
