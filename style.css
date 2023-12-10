@@ -9,14 +9,18 @@ body {
   text-align: center;
 }
 
-h1 {
-  height: 4rem;
+.container {
+  display: grid;
+  grid-template-rows: 20vmin 70vmin 10vmin;
+  align-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 #board {
   display: grid;
-  width: calc(100vmin - 8rem);
-  height: calc(100vmin - 8rem);
+  width: 70vmin;
+  height: 70vmin;
   margin: 0 auto;
   background: #333;
 }
@@ -28,5 +32,8 @@ h1 {
 
 .food {
   background-color: tomato;
-  border: 0.25vmin solid black;
+}
+
+footer {
+  font-size: 0.8rem;
 }
