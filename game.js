@@ -1,6 +1,7 @@
 // Main assets
 const board = document.querySelector('#board');
 const SIZE = 20;
+let SPEED = 200;
 let snake, food, dirX, dirY;
 
 function setBoard() {
@@ -21,8 +22,10 @@ function initGame() {
 }
 
 function draw() {
-  const boardDivs = document.querySelectorAll('#board div');
+  // Don't draw if there is collision
+  if (checkCollision()) return;
   // Clear board
+  const boardDivs = document.querySelectorAll('#board div');
   boardDivs.forEach((div) => {
     div.classList.remove('snake', 'food');
   });
@@ -75,29 +78,35 @@ function changeDirection(e) {
     dirX = 1;
     dirY = 0;
   }
-
-  checkCollision();
-  updateSnake();
-  draw();
 }
 
 function checkCollision() {
   const snakeHead = snake[0];
   // Border collision
   if (snakeHead.x < 1 || snakeHead.y < 1 || snakeHead.x > SIZE || snakeHead.y > SIZE) {
-    console.log('border collision!!');
     return true;
   }
   // Self collision
   for (let partIndex = 1; partIndex < snake.length; partIndex++) {
     if (snakeHead.x === snake[partIndex].x && snakeHead.y === snake[partIndex].y) {
-      console.log('self collision!!');
       return true;
     }
   }
   // No collision
-  console.log('no collision');
   return false;
+}
+
+// Game loop
+function gameLoop() {
+  setTimeout(() => {
+    if (checkCollision()) {
+      alert('Game over');
+      initGame();
+    }
+    updateSnake();
+    draw();
+    gameLoop();
+  }, SPEED);
 }
 
 // Helper functions
@@ -109,3 +118,4 @@ function findDivIndex(coordinates) {
 setBoard();
 initGame();
 document.addEventListener('keydown', changeDirection);
+gameLoop();
