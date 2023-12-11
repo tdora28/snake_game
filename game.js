@@ -1,6 +1,6 @@
 // Main assets
 const board = document.querySelector('#board');
-const SIZE = 20;
+const SIZE = 21;
 let SPEED = 200;
 let snake, food, dirX, dirY;
 
@@ -14,7 +14,7 @@ function setBoard() {
 }
 
 function initGame() {
-  snake = [{ x: 11, y: 11 }];
+  snake = [{ x: Math.ceil(SIZE / 2), y: Math.ceil(SIZE / 2) }];
   dirX = 0;
   dirY = 0;
   placeFood();
