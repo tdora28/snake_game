@@ -27,11 +27,12 @@ body {
 
 .snake {
   background-color: limegreen;
-  border: 0.25vmin solid black;
+  border: 1px solid #333;
 }
 
 .food {
   background-color: tomato;
+  border: 1px solid #333;
 }
 
 footer {

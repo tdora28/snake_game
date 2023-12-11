@@ -14,21 +14,37 @@ function setBoard() {
 
 function initGame() {
   snake = [{ x: 11, y: 11 }];
-  food = { x: 5, y: 1 };
+  placeFood();
   draw();
 }
 
 function draw() {
   const boardDivs = document.querySelectorAll('#board div');
+  // Clear board
   boardDivs.forEach((div) => {
-    div.classList.remove('snake');
+    div.classList.remove('snake', 'food');
   });
+  // Draw snake
   snake.forEach((snakePart) => {
     const snakePartPosition = findDivIndex(snakePart);
     board.children[snakePartPosition].classList.add('snake');
   });
+  // Draw food
   const foodPosition = findDivIndex(food);
   board.children[foodPosition].classList.add('food');
+}
+
+function placeFood() {
+  let foodPlaced = false;
+  while (!foodPlaced) {
+    // Generate random coords for food
+    food = {
+      x: Math.floor(Math.random() * SIZE) + 1,
+      y: Math.floor(Math.random() * SIZE) + 1,
+    };
+    // If food is not on snake, set foodPlaced to true
+    foodPlaced = !snake.some((snakePart) => snakePart.x === food.x && snakePart.y === food.y);
+  }
 }
 
 // Helper functions
@@ -39,5 +55,3 @@ function findDivIndex(coordinates) {
 
 setBoard();
 initGame();
-
-console.log(board.children[0]);
