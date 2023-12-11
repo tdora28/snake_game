@@ -1,7 +1,7 @@
 // Main assets
 const board = document.querySelector('#board');
 const SIZE = 20;
-let snake, food;
+let snake, food, dirX, dirY;
 
 function setBoard() {
   for (let i = 0; i < SIZE * SIZE; i++) {
@@ -14,6 +14,8 @@ function setBoard() {
 
 function initGame() {
   snake = [{ x: 11, y: 11 }];
+  dirX = 0;
+  dirY = 0;
   placeFood();
   draw();
 }
@@ -47,6 +49,25 @@ function placeFood() {
   }
 }
 
+function changeDirection(e) {
+  if (e.key === 'ArrowUp' && dirY === 0) {
+    dirX = 0;
+    dirY = -1;
+  } else if (e.key === 'ArrowDown' && dirY === 0) {
+    dirX = 0;
+    dirY = 1;
+  } else if (e.key === 'ArrowLeft' && dirX === 0) {
+    dirX = -1;
+    dirY = 0;
+  } else if (e.key === 'ArrowRight' && dirX === 0) {
+    dirX = 1;
+    dirY = 0;
+  }
+
+  console.log('dirX', dirX);
+  console.log('dirY', dirY);
+}
+
 // Helper functions
 function findDivIndex(coordinates) {
   const divIndex = (coordinates.y - 1) * SIZE + (coordinates.x - 1);
@@ -55,3 +76,4 @@ function findDivIndex(coordinates) {
 
 setBoard();
 initGame();
+document.addEventListener('keydown', changeDirection);
