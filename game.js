@@ -76,8 +76,28 @@ function changeDirection(e) {
     dirY = 0;
   }
 
+  checkCollision();
   updateSnake();
   draw();
+}
+
+function checkCollision() {
+  const snakeHead = snake[0];
+  // Border collision
+  if (snakeHead.x < 1 || snakeHead.y < 1 || snakeHead.x > SIZE || snakeHead.y > SIZE) {
+    console.log('border collision!!');
+    return true;
+  }
+  // Self collision
+  for (let partIndex = 1; partIndex < snake.length; partIndex++) {
+    if (snakeHead.x === snake[partIndex].x && snakeHead.y === snake[partIndex].y) {
+      console.log('self collision!!');
+      return true;
+    }
+  }
+  // No collision
+  console.log('no collision');
+  return false;
 }
 
 // Helper functions
