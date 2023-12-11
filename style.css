@@ -1,3 +1,7 @@
+:root {
+  --font: 'Pixelify Sans', 'Courier New', 'Courier New', Courier, monospace;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,8 +9,9 @@
 }
 
 body {
-  background: #333;
-  font-family: 'Courier New', 'Courier New', Courier, monospace;
+  background: #222;
+  font-family: var(--font);
+  color: #e3ff95;
   text-align: center;
 }
 
@@ -18,12 +23,20 @@ body {
   height: 100vh;
 }
 
+h1 {
+  font-size: 4rem;
+  font-weight: 400;
+  text-shadow: 0 0 0.2rem #e3ff95;
+}
+
 #board {
   display: grid;
   width: 70vmin;
   height: 70vmin;
   margin: 0 auto;
   background: #e3ff95;
+  border: 1rem solid #333;
+  box-shadow: 0 0 0.2rem #e3ff95;
 }
 
 .snake,
@@ -48,5 +61,6 @@ body {
 }
 
 footer {
-  font-size: 0.8rem;
+  font-size: 1rem;
+  color: #999;
 }
