@@ -40,6 +40,7 @@ function updateSnake() {
   // Add new head to the front
   const snakeHead = { x: snake[0].x + dirX, y: snake[0].y + dirY };
   snake.unshift(snakeHead);
+  // If new head pos runs into food, don't remove last snake part
   if (snakeHead.x === food.x && snakeHead.y === food.y) {
     placeFood();
   } else {
@@ -61,16 +62,16 @@ function placeFood() {
 }
 
 function changeDirection(e) {
-  if (e.key === 'ArrowUp' && dirY === 0) {
+  if ((e.key === 'ArrowUp' || e.key === 'w') && dirY === 0) {
     dirX = 0;
     dirY = -1;
-  } else if (e.key === 'ArrowDown' && dirY === 0) {
+  } else if ((e.key === 'ArrowDown' || e.key === 's') && dirY === 0) {
     dirX = 0;
     dirY = 1;
-  } else if (e.key === 'ArrowLeft' && dirX === 0) {
+  } else if ((e.key === 'ArrowLeft' || e.key === 'a') && dirX === 0) {
     dirX = -1;
     dirY = 0;
-  } else if (e.key === 'ArrowRight' && dirX === 0) {
+  } else if ((e.key === 'ArrowRight' || e.key === 'd') && dirX === 0) {
     dirX = 1;
     dirY = 0;
   }
