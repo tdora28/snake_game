@@ -36,6 +36,17 @@ function draw() {
   board.children[foodPosition].classList.add('food');
 }
 
+function updateSnake() {
+  // Add new head to the front
+  const snakeHead = { x: snake[0].x + dirX, y: snake[0].y + dirY };
+  snake.unshift(snakeHead);
+  if (snakeHead.x === food.x && snakeHead.y === food.y) {
+    placeFood();
+  } else {
+    snake.pop();
+  }
+}
+
 function placeFood() {
   let foodPlaced = false;
   while (!foodPlaced) {
@@ -64,8 +75,8 @@ function changeDirection(e) {
     dirY = 0;
   }
 
-  console.log('dirX', dirX);
-  console.log('dirY', dirY);
+  updateSnake();
+  draw();
 }
 
 // Helper functions
