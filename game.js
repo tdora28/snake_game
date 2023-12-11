@@ -27,12 +27,16 @@ function draw() {
   // Clear board
   const boardDivs = document.querySelectorAll('#board div');
   boardDivs.forEach((div) => {
-    div.classList.remove('snake', 'food');
+    div.classList.remove('snake', 'snake-head', 'food');
   });
   // Draw snake
-  snake.forEach((snakePart) => {
+  snake.forEach((snakePart, i) => {
     const snakePartPosition = findDivIndex(snakePart);
-    board.children[snakePartPosition].classList.add('snake');
+    if (i === 0) {
+      board.children[snakePartPosition].classList.add('snake-head');
+    } else {
+      board.children[snakePartPosition].classList.add('snake');
+    }
   });
   // Draw food
   const foodPosition = findDivIndex(food);

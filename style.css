@@ -5,6 +5,7 @@
 }
 
 body {
+  background: #333;
   font-family: 'Courier New', 'Courier New', Courier, monospace;
   text-align: center;
 }
@@ -22,17 +23,28 @@ body {
   width: 70vmin;
   height: 70vmin;
   margin: 0 auto;
-  background: #333;
+  background: #e3ff95;
+}
+
+.snake,
+.snake-head,
+.food {
+  border: 1px solid #e3ff95;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .snake {
-  background-color: limegreen;
-  border: 1px solid #333;
+  background-image: url('/assets/snake-body.png');
+}
+
+.snake-head {
+  background-image: url('/assets/snake-head.png');
 }
 
 .food {
-  background-color: tomato;
-  border: 1px solid #333;
+  background-image: url('/assets/apple.png');
 }
 
 footer {
