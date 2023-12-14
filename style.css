@@ -17,7 +17,7 @@ body {
 
 .container {
   display: grid;
-  grid-template-rows: 20vmin 70vmin 10vmin;
+  grid-template-rows: 15vmin 5vmin 70vmin 10vmin;
   align-content: center;
   align-items: center;
   height: 100vh;
@@ -27,6 +27,14 @@ h1 {
   font-size: 4rem;
   font-weight: 400;
   text-shadow: 0 0 0.2rem #e3ff95;
+}
+
+.score {
+  display: flex;
+  align-items: space-between;
+  width: 70vmin;
+  margin: 0 auto;
+  font-size: 1.5rem;
 }
 
 #board {

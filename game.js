@@ -1,8 +1,9 @@
 // Main assets
 const board = document.querySelector('#board');
+const scoreBox = document.querySelector('#score');
 const SIZE = 21;
 let SPEED = 200;
-let snake, food, dirX, dirY;
+let snake, food, dirX, dirY, score;
 
 function setBoard() {
   for (let i = 0; i < SIZE * SIZE; i++) {
@@ -17,6 +18,7 @@ function initGame() {
   snake = [{ x: Math.ceil(SIZE / 2), y: Math.ceil(SIZE / 2) }];
   dirX = 0;
   dirY = 0;
+  score = 0;
   placeFood();
   draw();
 }
@@ -41,6 +43,8 @@ function draw() {
   // Draw food
   const foodPosition = findDivIndex(food);
   board.children[foodPosition].classList.add('food');
+  // Show score
+  scoreBox.textContent = score;
 }
 
 function updateSnake() {
@@ -50,6 +54,7 @@ function updateSnake() {
   // If new head pos runs into food, don't remove last snake part
   if (snakeHead.x === food.x && snakeHead.y === food.y) {
     placeFood();
+    updateScore();
   } else {
     snake.pop();
   }
@@ -66,6 +71,10 @@ function placeFood() {
     // If food is not on snake, set foodPlaced to true
     foodPlaced = !snake.some((snakePart) => snakePart.x === food.x && snakePart.y === food.y);
   }
+}
+
+function updateScore() {
+  return (score += 1);
 }
 
 function changeDirection(e) {
