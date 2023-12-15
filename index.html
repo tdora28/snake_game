@@ -15,13 +15,44 @@
     <!-- https://youtu.be/baBq5GAL0_U?si=e-SQ9fV6o7Q4r6-N -->
     <!-- https://youtu.be/QTcIXok9wNY?si=NBKA9cVnI7Y04kYY -->
     <div class="container">
-      <h1>Snake</h1>
+      <!-- SNAKE GAME BOARD -->
       <div class="score">
         <p>Score: <span id="score">0</span></p>
       </div>
       <div id="board"></div>
+
+      <!-- FOOTER -->
       <footer>&copy; 2023 TDora28. All rights reserved.</footer>
+
+      <!-- GAME MODALS -->
+
+      <!-- GAME START SCREEN -->
+      <div class="box show" id="gameStart">
+        <h1>Snake Game</h1>
+        <div class="box-content">
+          <h2>Settings</h2>
+          <div class="box-input-group">
+            <label class="box-label" for="sizeInput">Board size:</label>
+            <input class="box-input" type="number" id="sizeInput" value="21" min="3" max="51" />
+          </div>
+          <div>
+            <p>Use 'WASD' or Arrow keys to move.</p>
+            <p>Don't hit the walls or yourself!</p>
+          </div>
+          <button class="box-button" id="startBtn">START</button>
+        </div>
+      </div>
+
+      <!-- GAME OVER SCREEN -->
+      <div class="box" id="gameOver">
+        <div class="box-content">
+          <h2>Game Over</h2>
+          <p>Score: <span id="finalScore">0</span></p>
+          <button class="box-button" id="restartBtn">Restart</button>
+        </div>
+      </div>
     </div>
+
     <script src="game.js"></script>
   </body>
 </html>

@@ -1,9 +1,25 @@
 // Main assets
 const board = document.querySelector('#board');
 const scoreBox = document.querySelector('#score');
-const SIZE = 21;
+const gameStartScreen = document.querySelector('#gameStart');
+const sizeInput = document.querySelector('#sizeInput');
+const startBtn = document.querySelector('#startBtn');
+const gameOverScreen = document.querySelector('#gameOver');
+const finalScore = document.querySelector('#finalScore');
+const restartBtn = document.querySelector('#restartBtn');
+let SIZE;
 let SPEED = 200;
 let snake, food, dirX, dirY, score;
+
+function setSize() {
+  let value = +sizeInput.value;
+  if (value < 3) {
+    value = 3;
+  } else if (value > 51) {
+    value = 51;
+  }
+  SIZE = value;
+}
 
 function setBoard() {
   for (let i = 0; i < SIZE * SIZE; i++) {
@@ -45,6 +61,11 @@ function draw() {
   board.children[foodPosition].classList.add('food');
   // Show score
   scoreBox.textContent = score;
+}
+
+function findDivIndex(coordinates) {
+  const divIndex = (coordinates.y - 1) * SIZE + (coordinates.x - 1);
+  return divIndex;
 }
 
 function updateSnake() {
@@ -109,12 +130,19 @@ function checkCollision() {
   return false;
 }
 
-// Game loop
+function startGame() {
+  gameStartScreen.classList.remove('show');
+  setSize();
+  setBoard();
+  initGame();
+  document.addEventListener('keydown', changeDirection);
+  gameLoop();
+}
+
 function gameLoop() {
   setTimeout(() => {
     if (checkCollision()) {
-      alert('Game over');
-      initGame();
+      gameOver('gameover');
     }
     updateSnake();
     draw();
@@ -122,13 +150,16 @@ function gameLoop() {
   }, SPEED);
 }
 
-// Helper functions
-function findDivIndex(coordinates) {
-  const divIndex = (coordinates.y - 1) * SIZE + (coordinates.x - 1);
-  return divIndex;
+function gameOver(state) {
+  if (state === 'gameover') {
+    document.removeEventListener('keydown', changeDirection);
+    gameOverScreen.classList.add('show');
+    finalScore.textContent = score;
+    restartBtn.focus();
+  } else if (state === 'restart') {
+    location.reload();
+  }
 }
 
-setBoard();
-initGame();
-document.addEventListener('keydown', changeDirection);
-gameLoop();
+startBtn.addEventListener('click', startGame);
+restartBtn.addEventListener('click', () => gameOver('restart'));
