@@ -1,5 +1,7 @@
 :root {
-  --font: 'Pixelify Sans', 'Courier New', 'Courier New', Courier, monospace;
+  --font: 'VT323', 'Courier New', Courier, monospace;
+  --clr-light: #e3ff95;
+  --clr-dark: #333;
 }
 
 * {
@@ -9,12 +11,21 @@
 }
 
 body {
-  background: #222;
+  background: var(--clr-dark);
   font-family: var(--font);
-  color: #e3ff95;
+  font-size: 24px;
+  color: var(--clr-light);
   text-align: center;
 }
 
+button,
+input {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* SNAKE GAME */
 .container {
   display: grid;
   grid-template-rows: 10vmin 80vmin 10vmin;
@@ -23,18 +34,12 @@ body {
   height: 100vh;
 }
 
-h1 {
-  font-size: 4rem;
-  font-weight: 400;
-  text-shadow: 0 0 0.2rem #e3ff95;
-}
-
 .score {
   display: flex;
   align-items: center;
   width: 80vmin;
   margin: 2rem auto 1rem;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 #board {
@@ -42,16 +47,16 @@ h1 {
   width: 80vmin;
   height: 80vmin;
   margin: 0 auto;
-  background: #e3ff95;
-  border: 1rem solid #333;
-  box-shadow: 0 0 0.2rem #e3ff95;
+  background: var(--clr-light);
+  border: 1rem solid var(--clr-dark);
+  box-shadow: 0 0 0.2rem var(--clr-light);
   cursor: none;
 }
 
 .snake,
 .snake-head,
 .food {
-  border: 1px solid #e3ff95;
+  border: 1px solid var(--clr-light);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -81,6 +86,11 @@ footer {
 }
 
 /* GAME MODALS: Game Start, Game Over */
+h1 {
+  font-size: 4rem;
+  font-weight: 400;
+  text-shadow: 0 0 0.2rem var(--clr-light);
+}
 .box {
   position: fixed;
   top: 0;
@@ -92,7 +102,7 @@ footer {
   align-items: center;
   width: 100%;
   min-height: 100vh;
-  background: #333;
+  background: var(--clr-dark);
 }
 .box.show {
   display: flex;
@@ -105,17 +115,10 @@ footer {
   max-width: 500px;
   margin: 2rem;
   padding: 2rem;
-  border: 0.5rem solid #333;
-  background: #e3ff95;
-  color: #333;
-  box-shadow: 0 0 0 0.5rem #e3ff95;
-}
-.box-content h2 {
-  font-size: 2rem;
-}
-.box-content p {
-  font-size: 1.5rem;
-  line-height: 1;
+  border: 0.5rem solid var(--clr-dark);
+  background: var(--clr-light);
+  color: var(--clr-dark);
+  box-shadow: 0 0 0.2rem var(--clr-light);
 }
 .box-input-group {
   display: grid;
@@ -128,40 +131,32 @@ footer {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background: #333;
-  font-size: 1.2rem;
-  color: #e3ff95;
+  background: var(--clr-dark);
+  color: var(--clr-light);
 }
 .box-input {
   height: 100%;
-  border: 2px solid #333;
-  background: #e3ff95;
-  font-family: inherit;
-  font-size: 1.5rem;
+  border: 2px solid var(--clr-dark);
+  background: var(--clr-light);
   text-align: center;
 }
 .box-input-btn {
   height: 100%;
-  border: 2px solid #333;
-  background: #e3ff95;
-  font-family: inherit;
-  font-size: 1.5rem;
+  border: 2px solid var(--clr-dark);
+  background: var(--clr-light);
   cursor: pointer;
 }
-
 .box-button {
   padding: 0.5rem 1rem;
-  border: 5px solid #333;
-  background: #333;
-  font-family: inherit;
-  font-size: 1.5rem;
-  color: #e3ff95;
+  border: 5px solid var(--clr-dark);
+  background: var(--clr-dark);
+  color: var(--clr-light);
   text-transform: uppercase;
   cursor: pointer;
 }
 .box-button:hover {
-  background: #e3ff95;
-  color: #333;
+  background: var(--clr-light);
+  color: var(--clr-dark);
 }
 .box-button:focus {
   outline: 1px solid white;
