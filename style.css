@@ -120,6 +120,7 @@ footer {
   display: grid;
   grid-template-columns: repeat(2, 50%);
   align-items: center;
+  height: 2.5rem;
 }
 .box-label {
   display: flex;
@@ -138,6 +139,15 @@ footer {
   font-size: 1.5rem;
   text-align: center;
 }
+.box-input-btn {
+  height: 100%;
+  border: 2px solid #333;
+  background: #e3ff95;
+  font-family: inherit;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
 .box-button {
   padding: 0.5rem 1rem;
   border: 5px solid #333;

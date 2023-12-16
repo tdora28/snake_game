@@ -3,22 +3,35 @@ const board = document.querySelector('#board');
 const scoreBox = document.querySelector('#score');
 const gameStartScreen = document.querySelector('#gameStart');
 const sizeInput = document.querySelector('#sizeInput');
+const speedSetBtn = document.querySelector('#speedSetBtn');
 const startBtn = document.querySelector('#startBtn');
 const gameOverScreen = document.querySelector('#gameOver');
 const finalScore = document.querySelector('#finalScore');
 const restartBtn = document.querySelector('#restartBtn');
 let SIZE;
 let SPEED = 200;
+let WILL_ACCELERATE = false;
 let snake, food, dirX, dirY, score;
 
 function setSize() {
   let value = +sizeInput.value;
+  // Board min: 3, max: 51
   if (value < 3) {
     value = 3;
   } else if (value > 51) {
     value = 51;
   }
   SIZE = value;
+}
+
+function setSpeed() {
+  WILL_ACCELERATE = !WILL_ACCELERATE;
+  speedSetBtn.textContent = WILL_ACCELERATE ? 'YES' : 'NO';
+  if (WILL_ACCELERATE) {
+    SPEED = 400;
+  } else {
+    SPEED = 200;
+  }
 }
 
 function setBoard() {
@@ -76,6 +89,9 @@ function updateSnake() {
   if (snakeHead.x === food.x && snakeHead.y === food.y) {
     placeFood();
     updateScore();
+    if (WILL_ACCELERATE) {
+      updateSpeed();
+    }
   } else {
     snake.pop();
   }
@@ -96,6 +112,12 @@ function placeFood() {
 
 function updateScore() {
   return (score += 1);
+}
+
+function updateSpeed() {
+  if (score % 5 === 0) {
+    SPEED *= 0.9;
+  }
 }
 
 function changeDirection(e) {
@@ -161,5 +183,6 @@ function gameOver(state) {
   }
 }
 
+speedSetBtn.addEventListener('click', setSpeed);
 startBtn.addEventListener('click', startGame);
 restartBtn.addEventListener('click', () => gameOver('restart'));
