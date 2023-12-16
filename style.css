@@ -45,6 +45,7 @@ h1 {
   background: #e3ff95;
   border: 1rem solid #333;
   box-shadow: 0 0 0.2rem #e3ff95;
+  cursor: none;
 }
 
 .snake,
